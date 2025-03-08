@@ -33,8 +33,9 @@ def get_historical_prices(ticker, start_date='1900-01-01', interval='1d'):
     if data.index.tzinfo is not None:
         data.index = data.index.tz_localize(None)  # Supprime le fuseau horaire (pour compatibilité Excel)
 
-    # Convertir les index datetime en simple date
-    data.index = data.index.date
+    data.reset_index(inplace=True)
+
+    data['Date'] = data['Date'].dt.date
 
     return data
 
