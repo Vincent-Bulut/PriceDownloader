@@ -1,11 +1,9 @@
-
 import os
 import pandas as pd
 import yfinance as yf
 import sys
 
 
-# Fonction pour détecter la racine du projet
 def get_project_root():
     """
     Retourne le chemin ABSOLU vers le répertoire racine du projet.
@@ -35,6 +33,9 @@ def get_historical_prices(ticker, start_date='1900-01-01', interval='1d'):
     if data.index.tzinfo is not None:
         data.index = data.index.tz_localize(None)  # Supprime le fuseau horaire (pour compatibilité Excel)
 
+    # Convertir les index datetime en simple date
+    data.index = data.index.date
+
     return data
 
 
@@ -47,7 +48,7 @@ def process_csv_and_generate_excel(csv_file, output_excel, start_date='1900-01-0
     :param start_date: Date de début pour récupérer les données (au format YYYY-MM-DD).
     """
     try:
-        tickers = pd.read_csv(csv_file, header=None)[0]  # Chargement des tickers depuis test.csv
+        tickers = pd.read_csv(csv_file, header=None)[0]  # Chargement des tickers depuis ticker.csv
     except FileNotFoundError:
         print(f"Erreur : le fichier '{csv_file}' n'a pas été trouvé.")
         return
@@ -66,7 +67,7 @@ def process_csv_and_generate_excel(csv_file, output_excel, start_date='1900-01-0
     print("Écriture des données dans le fichier Excel...")
     with pd.ExcelWriter(output_excel) as writer:
         for ticker, data in data_dict.items():
-            data.to_excel(writer, sheet_name=ticker[:31])  # Limite les noms de feuille à 31 caractères
+            data.to_excel(writer, sheet_name=ticker[:31])
 
     print(f"Fichier Excel généré : {output_excel}")
 
@@ -76,12 +77,11 @@ if __name__ == '__main__':
     project_root = get_project_root()
 
     # Chemins des fichiers
-    input_csv = os.path.join(project_root, "tickers.csv")  # test.csv se trouve dans la racine du projet
-    output_excel = os.path.join(project_root, "historical_prices.xlsx")  # Output dans la racine du projet
+    input_csv = os.path.join(project_root, "tickers.csv")
+    output_folder = os.path.join(project_root, "output")
+    output_excel = os.path.join(output_folder, "historical_prices.xlsx")
 
-    # Définir la date de début si nécessaire
-    start_date = "1900-01-01"
+    start_date = "1980-01-01"
 
-    # Début du traitement
+    # traitement
     process_csv_and_generate_excel(input_csv, output_excel, start_date)
-    print('end of process')
