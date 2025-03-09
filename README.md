@@ -45,5 +45,5 @@ Si vous souhaitez transformer le script Python en un exécutable autonome (par e
    pyinstaller --onefile yahoo_prices_downloader.py
    ```
 
-3. Une fois la commande terminée, l'exécutable sera situé dans le dossier `dist/` sous le nom **`main`** (ou `main.exe` sous Windows).
+3. Une fois la commande terminée, l'exécutable sera situé dans le dossier `dist/` sous le nom **`yahoo_prices_downloader`** (ou `yahoo_prices_downloader.exe` sous Windows).
      
