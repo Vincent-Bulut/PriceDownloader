@@ -1,6 +1,11 @@
 # PriceDownloader
 ## Prérequis
 - Toutes les dépendances nécessaires sont listées dans le fichier `requirements.txt`.
+### Installer les dépendances avec `pip` :
+Assurez-vous d'avoir Python installé sur votre machine, puis exécutez cette commande pour installer les dépendances :
+```bash
+  pip install -r requirements.txt
+```
 - **Important** : 
   1. Assurez-vous que le fichier **`tickers.csv`** est toujours placé à la **racine du projet**
   2. Le fichier **`tickers.csv`** doit contenir une liste de tickers **sans header**.  
@@ -37,7 +42,7 @@ Si vous souhaitez transformer le script Python en un exécutable autonome (par e
 
 2. Utilisez la commande suivante pour générer un exécutable unique :
    ```bash
-   pyinstaller --onefile main.py
+   pyinstaller --onefile yahoo_prices_downloader.py
    ```
 
 3. Une fois la commande terminée, l'exécutable sera situé dans le dossier `dist/` sous le nom **`main`** (ou `main.exe` sous Windows).
