@@ -18,7 +18,7 @@ Assurez-vous d'avoir Python installé sur votre machine, puis exécutez cette co
      ```
 ## Utilisation
 
-1. Exécutez le fichier `main.py` (ou utilisez l'exécutable généré) avec la commande suivante :
+1. Exécutez le fichier `yahoo_prices_downloader.py` (ou utilisez l'exécutable généré) dans le dossier ./dist.
 
 2. Le fichier contenant les prix historiques sera généré dans le dossier `output` sous le nom **`historical_prices.xlsx`**.
 
